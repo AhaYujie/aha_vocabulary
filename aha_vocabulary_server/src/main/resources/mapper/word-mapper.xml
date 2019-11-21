@@ -50,6 +50,10 @@
         where word_id = #{wordId}
     </update>
 
+    <delete id="delete" parameterType="Map">
+        delete from word where word_id = #{wordId}
+    </delete>
+
 </mapper>
 
 

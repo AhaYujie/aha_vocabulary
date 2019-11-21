@@ -13,6 +13,15 @@
     <context:component-scan base-package="online.ahayujie.controller"/>
 
     <mvc:annotation-driven/>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/token"/>
+            <mvc:exclude-mapping path="/user"/>
+            <bean class="online.ahayujie.interceptor.AuthenticationInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 <!--    &lt;!&ndash; 定义跳转的文件的前后缀 ，视图模式配置&ndash;&gt;-->
 <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->

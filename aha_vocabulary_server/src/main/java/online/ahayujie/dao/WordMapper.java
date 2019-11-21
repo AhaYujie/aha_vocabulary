@@ -12,7 +12,7 @@ public interface WordMapper {
      * @param conditionMap 可以包含 key：start(开始索引), size(页大小), userId, wordClean
      * @return
      */
-    List<Word> get(Map<String, Integer> conditionMap);
+    List<Word> get(Map<String, Long> conditionMap);
 
     /**
      * 插入单词
@@ -28,5 +28,12 @@ public interface WordMapper {
      * @return
      */
     int update(Word word);
+
+    /**
+     * 删除单词
+     * @param wordId
+     * @return
+     */
+    int delete(Long wordId);
 
 }

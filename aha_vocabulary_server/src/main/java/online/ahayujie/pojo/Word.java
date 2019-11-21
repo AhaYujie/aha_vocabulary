@@ -1,13 +1,22 @@
 package online.ahayujie.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Word {
 
+    @JsonProperty("word_id")
     private Long wordId;
+    @JsonProperty("word_user_id")
     private Long wordUserId;            // 拥有这个单词的user的id
+    @JsonProperty("word_spell")
     private String wordSpell;           // 单词拼写
+    @JsonProperty("word_translation")
     private String wordTranslation;     // 单词翻译
+    @JsonProperty("word_time")
     private String wordTime;            // 单词收录时间
+    @JsonProperty("word_search_times")
     private Integer wordSearchTimes;    // 单词查询次数
+    @JsonProperty("word_clean")
     private Integer wordClean;          // 单词是否被放入回收站，0为放入回收站，1为没有放入
 
     public Long getWordId() {

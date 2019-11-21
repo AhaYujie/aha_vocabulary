@@ -5,4 +5,25 @@
 
 <mapper namespace="online.ahayujie.dao.UserMapper">
 
+    <resultMap id="userResult" type="online.ahayujie.pojo.User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_password" property="password"/>
+    </resultMap>
+
+    <select id="getById" parameterType="int" resultMap="userResult">
+        select user_id, user_name, user_password from user where user_id = #{userId}
+    </select>
+
+    <select id="getByName" parameterType="String" resultMap="userResult">
+        select user_id, user_name, user_password from user where user_name = #{userName}
+    </select>
+
+    <insert id="insert" parameterType="online.ahayujie.pojo.User" useGeneratedKeys="true" keyProperty="userId">
+        insert into user
+        (user_name, user_password)
+        values
+        (#{userName}, #{password})
+    </insert>
+
 </mapper>

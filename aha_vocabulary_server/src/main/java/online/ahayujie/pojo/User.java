@@ -1,9 +1,14 @@
 package online.ahayujie.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
 
+    @JsonProperty("user_id")
     private Long userId;
+    @JsonProperty("username")
     private String userName;
+    @JsonProperty("password")
     private String password;
 
     public Long getUserId() {
