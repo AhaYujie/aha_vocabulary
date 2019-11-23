@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_bottom_nav_word_list"
+        android:title="单词本"
+        android:icon="@mipmap/ic_word_list"/>
+
+    <item
+        android:id="@+id/main_bottom_nav_garbage"
+        android:title="回收站"
+        android:icon="@mipmap/ic_clean_list"/>
+
+</menu>
