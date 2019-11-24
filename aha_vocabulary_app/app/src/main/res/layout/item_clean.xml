@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="wordItemViewModel"
-            type="online.ahayujie.aha_vocabulary_app.ui.word.WordItemViewModel" />
+            name="cleanItemViewModel"
+            type="online.ahayujie.aha_vocabulary_app.ui.clean.CleanItemViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/word_item_word_spell"
+                android:id="@+id/clean_word_item_word_spell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -31,20 +31,11 @@
                 android:textSize="20sp"
                 android:text="beautiful"/>
 
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:background="@color/lightGray"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone"/>
-
             <TextView
-                android:id="@+id/word_item_word_translation"
+                android:id="@+id/clean_word_item_word_translation"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/word_item_word_spell"
+                android:layout_below="@+id/clean_word_item_word_spell"
                 android:layout_margin="5dp"
                 android:textColor="@color/black"
                 android:textSize="17sp"
@@ -52,20 +43,10 @@
                 android:maxLength="120"
                 android:text="美丽的，可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的"/>
 
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:background="@color/lightGray"
-                android:layout_margin="5dp"
-                android:layout_below="@+id/word_item_word_spell"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/word_item_word_translation"
+                android:layout_below="@+id/clean_word_item_word_translation"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
@@ -79,7 +60,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="5dp"
-                android:src="@mipmap/ic_clean_gray"
+                android:src="@mipmap/ic_collect_green"
                 android:clickable="true"
                 android:focusable="true"/>
 
@@ -88,20 +69,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/word_item_word_translation"
+                android:layout_below="@+id/clean_word_item_word_translation"
                 android:layout_margin="5dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:id="@+id/word_item_add_button"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@mipmap/ic_add_green"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="查询次数 : "/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,15 +89,6 @@
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
                     android:text="5"/>
-
-                <ImageView
-                    android:id="@+id/word_item_reduce_button"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@mipmap/ic_reduce_green"
-                    android:clickable="true"
-                    android:focusable="true"/>
-
             </LinearLayout>
 
         </RelativeLayout>

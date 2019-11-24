@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="word_sort_array">
+    <string-array name="word_spinner_array">
         <item>按字典顺序</item>
         <item>按查询次数</item>
         <item>按收录时间</item>
         <item>隐藏英文</item>
         <item>隐藏中文</item>
+    </string-array>
+    <string-array name="clean_spinner_array">
+        <item>按字典顺序</item>
+        <item>按查询次数</item>
+        <item>按收录时间</item>
     </string-array>
 </resources>

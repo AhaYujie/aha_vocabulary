@@ -20,11 +20,13 @@
         <RelativeLayout
             android:id="@+id/word_bar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="1dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@mipmap/ic_home"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
@@ -34,18 +36,18 @@
 
             <Spinner
                 android:id="@+id/word_more"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@mipmap/ic_more"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:entries="@array/word_sort_array"/>
+                android:entries="@array/word_spinner_array"/>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@mipmap/ic_search"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
@@ -58,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/word_bar"
+            android:overScrollMode="never"
             binding:layoutManager="@{LayoutManagers.linear()}"
             binding:itemBinding="@{wordViewModel.wordItemViewModelItemBinding}"
             binding:items="@{wordViewModel.wordItemViewModels}"/>

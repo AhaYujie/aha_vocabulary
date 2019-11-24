@@ -24,6 +24,9 @@ public class WordViewModel extends BaseViewModel {
 
     public WordViewModel(@NonNull Application application) {
         super(application);
+        for (int i = 0; i < 20; i++) {
+            wordItemViewModels.add(new WordItemViewModel(this));
+        }
     }
 
     public ItemBinding<WordItemViewModel> getWordItemViewModelItemBinding() {
