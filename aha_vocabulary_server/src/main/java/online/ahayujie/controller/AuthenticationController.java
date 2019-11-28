@@ -44,10 +44,11 @@ public class AuthenticationController {
 
     /**
      * 客户端token退出登录
+     * spring的Interceptor不能细分到http的method，无法拦截http method是delete的/token路径
      * @param request
      * @param response
      */
-    @DeleteMapping(value = "/token/logout")     // spring的Interceptor不能细分到http的method，无法拦截http method是delete的/token路径
+    @DeleteMapping(value = "/token/logout")
     public void tokenLogout(HttpServletRequest request, HttpServletResponse response) {
         authenticationService.tokenLogout((Long) request.getAttribute("user_id"));
         response.setStatus(HttpServletResponse.SC_OK);

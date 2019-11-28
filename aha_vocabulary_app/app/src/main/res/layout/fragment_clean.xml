@@ -47,14 +47,23 @@
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+            android:id="@+id/clean_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/clean_bar"
-            android:overScrollMode="never"
-            binding:layoutManager="@{LayoutManagers.linear()}"
-            binding:itemBinding="@{cleanViewModel.cleanItemViewModelItemBinding}"
-            binding:items="@{cleanViewModel.cleanItemViewModels}"/>
+            binding:tr_head_height="80dp"
+            binding:tr_wave_height="80dp"
+            android:layout_below="@+id/clean_bar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                binding:itemBinding="@{cleanViewModel.cleanItemViewModelItemBinding}"
+                binding:items="@{cleanViewModel.cleanItemViewModels}"/>
+
+        </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
     </RelativeLayout>
 

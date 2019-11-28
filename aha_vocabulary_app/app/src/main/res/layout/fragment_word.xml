@@ -32,7 +32,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                binding:onClickCommand="@{wordViewModel.homeClick}"/>
 
             <Spinner
                 android:id="@+id/word_more"
@@ -43,7 +44,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:entries="@array/word_spinner_array"/>
+                android:layout_marginEnd="10dp"
+                android:entries="@array/word_spinner_array"
+                />
 
             <ImageView
                 android:layout_width="25dp"
@@ -51,19 +54,32 @@
                 android:src="@mipmap/ic_search"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_toLeftOf="@+id/word_more"
-                android:layout_toStartOf="@+id/word_more"/>
+                android:layout_toStartOf="@+id/word_more"
+                binding:onClickCommand="@{wordViewModel.searchClick}"/>
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+            android:id="@+id/word_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/word_bar"
-            android:overScrollMode="never"
-            binding:layoutManager="@{LayoutManagers.linear()}"
-            binding:itemBinding="@{wordViewModel.wordItemViewModelItemBinding}"
-            binding:items="@{wordViewModel.wordItemViewModels}"/>
+            binding:tr_head_height="80dp"
+            binding:tr_wave_height="80dp"
+            binding:onLoadMoreCommand="@{wordViewModel.onLoadMoreCommand}"
+            binding:onRefreshCommand="@{wordViewModel.onRefreshCommand}"
+            android:layout_below="@+id/word_bar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                binding:itemBinding="@{wordViewModel.wordItemViewModelItemBinding}"
+                binding:items="@{wordViewModel.wordItemViewModels}"/>
+
+        </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

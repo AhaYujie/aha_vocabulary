@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,8 +24,12 @@ import online.ahayujie.aha_vocabulary_app.ui.word.WordFragment;
 
 /**
  * 主活动，包含单词本和回收站两个Fragment
+ *
+ * @author aha
  */
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
+
+    private DrawerLayout mainDrawerLayout;
 
     /**
      * 初始化根布局
@@ -52,6 +57,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         super.initData();
         initViewPager();
         initBottomNav();
+        mainDrawerLayout = findViewById(R.id.main_drawer_layout);
     }
 
     /**
@@ -69,8 +75,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
                             case R.id.main_bottom_nav_clean:
                                 binding.mainViewPager.setCurrentItem(1);
                                 return true;
+                            default:
+                                return false;
                         }
-                        return false;
                     }
                 }
         );
@@ -113,7 +120,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         return fragmentList;
     }
 
-
+    public DrawerLayout getMainDrawerLayout() {
+        return mainDrawerLayout;
+    }
 }
 
 

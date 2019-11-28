@@ -29,7 +29,7 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="beautiful"/>
+                android:text="@{wordItemViewModel.wordSpell}"/>
 
             <LinearLayout
                 android:layout_width="250dp"
@@ -50,7 +50,7 @@
                 android:textSize="17sp"
                 android:maxLines="2"
                 android:maxLength="120"
-                android:text="美丽的，可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的"/>
+                android:text="@{wordItemViewModel.wordTranslation}"/>
 
             <LinearLayout
                 android:layout_width="250dp"
@@ -71,7 +71,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/gray"
                 android:textSize="14sp"
-                android:text="2019-11-23"/>
+                android:text="@{wordItemViewModel.wordTime}"/>
 
             <ImageView
                 android:layout_width="20dp"
@@ -81,7 +81,8 @@
                 android:layout_margin="5dp"
                 android:src="@mipmap/ic_clean_gray"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                binding:onClickCommand="@{wordItemViewModel.wordCleanClick}"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -101,7 +102,8 @@
                     android:layout_marginEnd="10dp"
                     android:src="@mipmap/ic_add_green"
                     android:clickable="true"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    binding:onClickCommand="@{wordItemViewModel.wordAddClick}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +112,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
-                    android:text="5"/>
+                    android:text="@{wordItemViewModel.wordSearchTimes}"/>
 
                 <ImageView
                     android:id="@+id/word_item_reduce_button"
@@ -118,7 +120,8 @@
                     android:layout_height="30dp"
                     android:src="@mipmap/ic_reduce_green"
                     android:clickable="true"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    binding:onClickCommand="@{wordItemViewModel.wordReduceClick}"/>
 
             </LinearLayout>
 

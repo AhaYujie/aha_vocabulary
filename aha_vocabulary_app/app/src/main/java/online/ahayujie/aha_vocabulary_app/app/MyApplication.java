@@ -6,6 +6,9 @@ import me.goldze.mvvmhabit.base.BaseApplication;
 import me.goldze.mvvmhabit.utils.KLog;
 import online.ahayujie.aha_vocabulary_app.BuildConfig;
 
+/**
+ * @author aha
+ */
 public class MyApplication extends BaseApplication {
 
     public static final String TAG = "ahayujie";

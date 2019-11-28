@@ -10,11 +10,14 @@ import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 import online.ahayujie.aha_vocabulary_app.BR;
 import online.ahayujie.aha_vocabulary_app.R;
+import online.ahayujie.aha_vocabulary_app.data.DataRepository;
 
 /**
  * 回收站ViewModel
+ *
+ * @author aha
  */
-public class CleanViewModel extends BaseViewModel {
+public class CleanViewModel extends BaseViewModel<DataRepository> {
 
     private ObservableList<CleanItemViewModel> cleanItemViewModels =
             new ObservableArrayList<>();
@@ -22,8 +25,8 @@ public class CleanViewModel extends BaseViewModel {
     private ItemBinding<CleanItemViewModel> cleanItemViewModelItemBinding =
             ItemBinding.of(BR.cleanItemViewModel, R.layout.item_clean);
 
-    public CleanViewModel(@NonNull Application application) {
-        super(application);
+    public CleanViewModel(@NonNull Application application, DataRepository dataRepository) {
+        super(application, dataRepository);
         for (int i = 0; i < 20; i++) {
             cleanItemViewModels.add(new CleanItemViewModel(this));
         }
