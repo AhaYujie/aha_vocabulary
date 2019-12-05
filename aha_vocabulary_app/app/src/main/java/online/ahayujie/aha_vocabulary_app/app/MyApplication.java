@@ -11,7 +11,7 @@ import online.ahayujie.aha_vocabulary_app.BuildConfig;
  */
 public class MyApplication extends BaseApplication {
 
-    public static final String TAG = "ahayujie";
+    public static final String TAG = "ahayujietag";
 
     private static Context context;
 

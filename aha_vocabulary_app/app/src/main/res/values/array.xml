@@ -6,6 +6,8 @@
         <item>按收录时间</item>
         <item>隐藏英文</item>
         <item>隐藏中文</item>
+        <item>显示英文</item>
+        <item>显示中文</item>
     </string-array>
     <string-array name="clean_spinner_array">
         <item>按字典顺序</item>

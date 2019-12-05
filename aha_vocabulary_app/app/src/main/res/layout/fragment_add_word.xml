@@ -30,7 +30,8 @@
                 android:layout_marginStart="10dp"
                 android:src="@mipmap/ic_back_black"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                binding:onClickCommand="@{addWordViewModel.backClick}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,17 +78,6 @@
                     android:maxLines="1"
                     android:maxLength="40"/>
 
-                <EditText
-                    android:id="@+id/add_word_word_search_times_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/add_word_word_translation_edit_text"
-                    android:layout_marginTop="10dp"
-                    android:hint="请输入单词查询次数(默认为1)"
-                    android:inputType="number"
-                    android:maxLength="40"
-                    android:maxLines="1"/>
-
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -101,7 +91,8 @@
             android:background="@drawable/button"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="保存"/>
+            android:text="保存"
+            binding:onClickCommand="@{addWordViewModel.saveClick}"/>
 
     </RelativeLayout>
 

@@ -7,12 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
+import me.goldze.mvvmhabit.binding.command.BindingConsumer;
+import me.goldze.mvvmhabit.bus.Messenger;
 import me.goldze.mvvmhabit.bus.event.SingleLiveEvent;
 import me.goldze.mvvmhabit.utils.RxUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
@@ -23,6 +30,8 @@ import online.ahayujie.aha_vocabulary_app.app.MyApplication;
 import online.ahayujie.aha_vocabulary_app.data.DataRepository;
 import online.ahayujie.aha_vocabulary_app.data.bean.Word;
 import online.ahayujie.aha_vocabulary_app.data.bean.WordListJson;
+import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordFragment;
+import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordViewModel;
 import online.ahayujie.aha_vocabulary_app.ui.word.search_word.SearchWordFragment;
 import retrofit2.Response;
 
@@ -53,11 +62,12 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
             // 下拉刷新
             Log.d(MyApplication.TAG, "下拉刷新");
             currentPageIndex = 1;
+            wordItemViewModels.clear();
             getWordList();
         }
     });
 
-    private BindingCommand onLoadMoreCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onLoadMoreCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             // 加载更多
@@ -83,8 +93,69 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
         }
     });
 
+    private BindingCommand addWordClick = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            // 添加新单词
+            WordViewModel.this.startContainerActivity(AddWordFragment.class.getCanonicalName());
+        }
+    });
+
+    /**
+     * 根据字典顺序排序
+     */
+    public void sortByWord() {
+        List<WordItemViewModel> tmp = new ArrayList<>(wordItemViewModels);
+        Collections.sort(tmp, new Comparator<WordItemViewModel>() {
+            @Override
+            public int compare(WordItemViewModel o1, WordItemViewModel o2) {
+                return o1.getWordSpell().get().compareTo(o2.getWordSpell().get());
+            }
+        });
+        wordItemViewModels.clear();
+        wordItemViewModels.addAll(tmp);
+    }
+
+    /**
+     * 根据查询次数从大到小排序
+     */
+    public void sortBySearchTimes() {
+        List<WordItemViewModel> tmp = new ArrayList<>(wordItemViewModels);
+        Collections.sort(tmp, new Comparator<WordItemViewModel>() {
+            @Override
+            public int compare(WordItemViewModel o1, WordItemViewModel o2) {
+                return Integer.valueOf(o2.getWordSearchTimes().get())
+                        .compareTo(Integer.valueOf(o1.getWordSearchTimes().get()));
+            }
+        });
+        wordItemViewModels.clear();
+        wordItemViewModels.addAll(tmp);
+    }
+
+    /**
+     * 根据收录时间排序
+     */
+    public void sortByTime() {
+        List<WordItemViewModel> tmp = new ArrayList<>(wordItemViewModels);
+        Collections.sort(tmp, new Comparator<WordItemViewModel>() {
+            @Override
+            public int compare(WordItemViewModel o1, WordItemViewModel o2) {
+                return o1.getWordTime().get().compareTo(o2.getWordTime().get());
+            }
+        });
+        wordItemViewModels.clear();
+        wordItemViewModels.addAll(tmp);
+    }
+
     public WordViewModel(@NonNull Application application, DataRepository dataRepository) {
         super(application, dataRepository);
+        Messenger.getDefault().register(this, AddWordViewModel.TOKEN_WORD_ADD, Word.class,
+                new BindingConsumer<Word>() {
+                    @Override
+                    public void call(Word word) {
+                        wordItemViewModels.add(new WordItemViewModel(WordViewModel.this, word));
+                    }
+                });
     }
 
     /**
@@ -127,6 +198,7 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
                         Log.d(MyApplication.TAG, "getWordList：加载错误 " + throwable.getMessage());
                         refreshLiveEvent.setValue(false);
                         loadMoreLiveEvent.setValue(false);
+                        currentPageIndex--;
                         ToastUtils.showShort("加载出错了...");
                     }
                 }, new Action() {
@@ -139,6 +211,14 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
                 });
     }
 
+    public DataRepository getDataRepository() {
+        return model;
+    }
+
+    public BindingCommand getAddWordClick() {
+        return addWordClick;
+    }
+
     public BindingCommand getSearchClick() {
         return searchClick;
     }
@@ -149,10 +229,6 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
 
     public SingleLiveEvent<Boolean> getDrawerLiveEvent() {
         return drawerLiveEvent;
-    }
-
-    public BindingCommand getOnLoadMoreCommand() {
-        return onLoadMoreCommand;
     }
 
     public BindingCommand getOnRefreshCommand() {

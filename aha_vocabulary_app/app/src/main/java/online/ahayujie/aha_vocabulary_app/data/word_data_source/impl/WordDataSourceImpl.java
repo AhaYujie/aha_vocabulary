@@ -1,7 +1,15 @@
 package online.ahayujie.aha_vocabulary_app.data.word_data_source.impl;
 
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import io.reactivex.Observable;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import online.ahayujie.aha_vocabulary_app.data.bean.StatusJson;
+import online.ahayujie.aha_vocabulary_app.data.bean.Word;
 import online.ahayujie.aha_vocabulary_app.data.bean.WordJson;
 import online.ahayujie.aha_vocabulary_app.data.bean.WordListJson;
 import online.ahayujie.aha_vocabulary_app.data.bean.WordOnlineJson;
@@ -70,7 +78,12 @@ public class WordDataSourceImpl implements WordDataSource {
      */
     @Override
     public Observable<Response<StatusJson>> modifyWordSearchTimes(int wordId, int searchTimes) {
-        return wordService.modifyWordSearchTimes(userDataSource.getToken(), wordId, searchTimes);
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("word_id", wordId);
+        map.put("word_search_times", searchTimes);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
+                new Gson().toJson(map));
+        return wordService.modifyWordSearchTimes(userDataSource.getToken(), requestBody);
     }
 
     /**
@@ -82,7 +95,12 @@ public class WordDataSourceImpl implements WordDataSource {
      */
     @Override
     public Observable<Response<StatusJson>> modifyWordClean(int wordId, int wordClean) {
-        return wordService.modifyWordClean(userDataSource.getToken(), wordId, wordClean);
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("word_id", wordId);
+        map.put("word_clean", wordClean);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
+                new Gson().toJson(map));
+        return wordService.modifyWordClean(userDataSource.getToken(), requestBody);
     }
 
     /**

@@ -1,5 +1,6 @@
 package online.ahayujie.aha_vocabulary_app.app;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -55,13 +56,13 @@ public class MyViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new WordViewModel(application, dataRepository);
         }
         else if (modelClass.isAssignableFrom(SearchWordViewModel.class)) {
-            return (T) new WordViewModel(application, dataRepository);
+            return (T) new SearchWordViewModel(application, dataRepository);
         }
         else if (modelClass.isAssignableFrom(AddWordViewModel.class)) {
-            return (T) new WordViewModel(application, dataRepository);
+            return (T) new AddWordViewModel(application, dataRepository);
         }
         else if (modelClass.isAssignableFrom(CleanViewModel.class)) {
-            return (T) new WordViewModel(application, dataRepository);
+            return (T) new CleanViewModel(application, dataRepository);
         }
         else {
             throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

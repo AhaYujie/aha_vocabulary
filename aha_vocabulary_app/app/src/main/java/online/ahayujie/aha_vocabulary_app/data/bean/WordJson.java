@@ -1,7 +1,13 @@
 package online.ahayujie.aha_vocabulary_app.data.bean;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 收录单词接口response json
+ *
+ * @author aha
  */
 public class WordJson {
 
@@ -29,6 +35,7 @@ public class WordJson {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return "WordJson{" +
                 "status=" + status +

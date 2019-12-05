@@ -4,9 +4,13 @@
     <data>
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
         <import type="androidx.recyclerview.widget.LinearLayoutManager" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter"/>
         <variable
             name="cleanViewModel"
             type="online.ahayujie.aha_vocabulary_app.ui.clean.CleanViewModel" />
+        <variable
+            name="cleanAdapter"
+            type="BindingRecyclerViewAdapter" />
     </data>
 
     <RelativeLayout
@@ -32,10 +36,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                binding:onClickCommand="@{cleanViewModel.homeClick}"/>
 
             <Spinner
-                android:id="@+id/word_more"
+                android:id="@+id/clean_more_spinner"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@mipmap/ic_more"
@@ -43,6 +48,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:entries="@array/clean_spinner_array"/>
 
         </RelativeLayout>
@@ -51,9 +57,9 @@
             android:id="@+id/clean_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            binding:tr_head_height="80dp"
-            binding:tr_wave_height="80dp"
-            android:layout_below="@+id/clean_bar">
+            android:layout_below="@+id/clean_bar"
+            binding:onLoadMoreCommand="@{cleanViewModel.onLoadMoreCommand}"
+            binding:onRefreshCommand="@{cleanViewModel.onRefreshCommand}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "online.ahayujie.aha_vocabulary_app"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

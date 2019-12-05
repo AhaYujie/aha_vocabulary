@@ -4,15 +4,20 @@
     <data>
         <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
         <import type="androidx.recyclerview.widget.LinearLayoutManager" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
         <variable
             name="wordViewModel"
             type="online.ahayujie.aha_vocabulary_app.ui.word.WordViewModel" />
+        <variable
+            name="wordAdapter"
+            type="BindingRecyclerViewAdapter" />
     </data>
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.word.WordFragment">
@@ -36,7 +41,7 @@
                 binding:onClickCommand="@{wordViewModel.homeClick}"/>
 
             <Spinner
-                android:id="@+id/word_more"
+                android:id="@+id/word_more_spinner"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@mipmap/ic_more"
@@ -55,8 +60,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_toLeftOf="@+id/word_more"
-                android:layout_toStartOf="@+id/word_more"
+                android:layout_toLeftOf="@+id/word_more_spinner"
+                android:layout_toStartOf="@+id/word_more_spinner"
                 binding:onClickCommand="@{wordViewModel.searchClick}"/>
 
         </RelativeLayout>
@@ -65,16 +70,15 @@
             android:id="@+id/word_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            binding:tr_head_height="80dp"
-            binding:tr_wave_height="80dp"
+            android:layout_below="@+id/word_bar"
             binding:onLoadMoreCommand="@{wordViewModel.onLoadMoreCommand}"
-            binding:onRefreshCommand="@{wordViewModel.onRefreshCommand}"
-            android:layout_below="@+id/word_bar">
+            binding:onRefreshCommand="@{wordViewModel.onRefreshCommand}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
+                binding:adapter="@{wordAdapter}"
                 binding:layoutManager="@{LayoutManagers.linear()}"
                 binding:itemBinding="@{wordViewModel.wordItemViewModelItemBinding}"
                 binding:items="@{wordViewModel.wordItemViewModels}"/>
@@ -85,10 +89,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_add"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"/>
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            binding:onClickCommand="@{wordViewModel.addWordClick}"/>
 
     </RelativeLayout>
 

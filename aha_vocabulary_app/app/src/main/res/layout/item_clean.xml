@@ -29,7 +29,7 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="beautiful"/>
+                android:text="@{cleanItemViewModel.wordSpell}"/>
 
             <TextView
                 android:id="@+id/clean_word_item_word_translation"
@@ -41,7 +41,7 @@
                 android:textSize="17sp"
                 android:maxLines="2"
                 android:maxLength="120"
-                android:text="美丽的，可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的可爱的"/>
+                android:text="@{cleanItemViewModel.wordTranslation}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,17 +52,30 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/gray"
                 android:textSize="14sp"
-                android:text="2019-11-23"/>
+                android:text="@{cleanItemViewModel.wordTime}"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:layout_toLeftOf="@+id/clean_word_item_delete_icon"
+                android:layout_toStartOf="@+id/clean_word_item_delete_icon"
                 android:layout_margin="5dp"
                 android:src="@mipmap/ic_collect_green"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                binding:onClickCommand="@{cleanItemViewModel.collectClick}"/>
+
+            <ImageView
+                android:id="@+id/clean_word_item_delete_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:src="@mipmap/ic_clean_gray"
+                android:clickable="true"
+                android:focusable="true"
+                binding:onClickCommand="@{cleanItemViewModel.deleteClick}"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -88,7 +101,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
-                    android:text="5"/>
+                    android:text="@{cleanItemViewModel.wordSearchTimes}"/>
             </LinearLayout>
 
         </RelativeLayout>

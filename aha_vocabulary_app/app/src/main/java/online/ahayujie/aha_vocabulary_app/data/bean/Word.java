@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * 单词bean类
+ *
+ * @author aha
  */
 public class Word {
 
@@ -20,10 +22,10 @@ public class Word {
     private String wordTime;            // 单词收录时间
 
     @SerializedName("word_search_times")
-    private int wordSearchTimes;        // 单词查询次数
+    private Integer wordSearchTimes;        // 单词查询次数
 
     @SerializedName("word_clean")
-    private int wordClean;              // 是否是被放入回收站的单词(0为放入的，1为不放入的)
+    private Integer wordClean;              // 是否是被放入回收站的单词(0为放入的，1为不放入的)
 
     public int getWordId() {
         return wordId;
@@ -57,19 +59,19 @@ public class Word {
         this.wordTime = wordTime;
     }
 
-    public int getWordSearchTimes() {
+    public Integer getWordSearchTimes() {
         return wordSearchTimes;
     }
 
-    public void setWordSearchTimes(int wordSearchTimes) {
+    public void setWordSearchTimes(Integer wordSearchTimes) {
         this.wordSearchTimes = wordSearchTimes;
     }
 
-    public int getWordClean() {
+    public Integer getWordClean() {
         return wordClean;
     }
 
-    public void setWordClean(int wordClean) {
+    public void setWordClean(Integer wordClean) {
         this.wordClean = wordClean;
     }
 

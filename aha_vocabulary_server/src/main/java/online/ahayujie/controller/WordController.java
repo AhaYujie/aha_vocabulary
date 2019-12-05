@@ -9,9 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
+/**
+ * 单词控制器
+ *
+ * @author aha
+ */
 @RestController
 @RequestMapping("/word")
 public class WordController {
@@ -31,12 +38,15 @@ public class WordController {
      * @return
      */
     @GetMapping
-    public List<Word> getWordList(@RequestParam(value = "word_clean", required = false, defaultValue = "1") Long wordClean,
-                                  @RequestParam(value = "page", required = false, defaultValue = "1") Long page,
-                                  @RequestParam(value = "page_size", required = false, defaultValue = "20") Long pageSize,
-                                  HttpServletRequest request) {
+    public Map<String, Object> getWordList(@RequestParam(value = "word_clean", required = false, defaultValue = "1") Long wordClean,
+                           @RequestParam(value = "page", required = false, defaultValue = "1") Long page,
+                           @RequestParam(value = "page_size", required = false, defaultValue = "20") Long pageSize,
+                           HttpServletRequest request) {
         Long userId = (Long) request.getAttribute("user_id");
-        return wordService.getWordList(userId, wordClean, page, pageSize);
+        List<Word> wordList = wordService.getWordList(userId, wordClean, page, pageSize);
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("word_list", wordList);
+        return map;
     }
 
     /**
@@ -106,21 +116,21 @@ public class WordController {
      * @return
      */
     @PostMapping(produces = "application/json;charset=utf-8")
-    public String saveWord(@RequestParam("word_spell") String wordSpell,
+    public Map<String, Object> saveWord(@RequestParam("word_spell") String wordSpell,
                            @RequestParam("word_translation") String wordTranslation,
                            HttpServletRequest request) {
         Long userId = (Long) request.getAttribute("user_id");
-        JSONObject jsonObject = new JSONObject();
+        Map<String, Object> map = new HashMap<>(2);
         try {
             Word word = wordService.saveWord(wordSpell, wordTranslation, userId);
-            jsonObject.put("status", 1);
-            jsonObject.put("word", word);
+            map.put("status", 1);
+            map.put("word", word);
         }
         catch (IllegalArgumentException e) {
             e.printStackTrace();
-            jsonObject.put("status", 0);
+            map.put("status", 0);
         }
-        return jsonObject.toJSONString();
+        return map;
     }
 
 }

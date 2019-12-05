@@ -39,7 +39,7 @@ public interface WordDataSource {
     /**
      * 修改单词是否放入回收站
      * @param wordId
-     * @param wordClean
+     * @param wordClean 单词是否放入回收站(0为放入，1为不放入)
      * @return
      */
     Observable<Response<StatusJson>> modifyWordClean(int wordId, int wordClean);
