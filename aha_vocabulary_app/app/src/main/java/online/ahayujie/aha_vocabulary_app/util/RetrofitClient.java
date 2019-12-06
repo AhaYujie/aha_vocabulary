@@ -91,6 +91,7 @@ public class RetrofitClient {
                 .cache(cache)
                 .addInterceptor(new BaseInterceptor(headers))
                 .addInterceptor(new CacheInterceptor(mContext))
+                .addInterceptor(MyApplication.getAuthenticationInterceptor())
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                 .addInterceptor(new LoggingInterceptor
                         .Builder()//构建者模式

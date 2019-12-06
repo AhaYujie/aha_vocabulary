@@ -30,9 +30,7 @@ import online.ahayujie.aha_vocabulary_app.app.MyApplication;
 import online.ahayujie.aha_vocabulary_app.data.DataRepository;
 import online.ahayujie.aha_vocabulary_app.data.bean.Word;
 import online.ahayujie.aha_vocabulary_app.data.bean.WordListJson;
-import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordFragment;
 import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordViewModel;
-import online.ahayujie.aha_vocabulary_app.ui.word.search_word.SearchWordFragment;
 import retrofit2.Response;
 
 /**
@@ -55,6 +53,10 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
     private SingleLiveEvent<Boolean> loadMoreLiveEvent = new SingleLiveEvent<>();
 
     private SingleLiveEvent<Boolean> drawerLiveEvent = new SingleLiveEvent<>();
+
+    private SingleLiveEvent<Boolean> addWordLiveEvent = new SingleLiveEvent<>();
+
+    private SingleLiveEvent<Boolean> searchWordLiveEvent = new SingleLiveEvent<>();
 
     private BindingCommand onRefreshCommand = new BindingCommand(new BindingAction() {
         @Override
@@ -89,7 +91,7 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
         @Override
         public void call() {
             // 搜索新单词
-            WordViewModel.this.startContainerActivity(SearchWordFragment.class.getCanonicalName());
+            searchWordLiveEvent.setValue(true);
         }
     });
 
@@ -97,7 +99,7 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
         @Override
         public void call() {
             // 添加新单词
-            WordViewModel.this.startContainerActivity(AddWordFragment.class.getCanonicalName());
+            addWordLiveEvent.setValue(true);
         }
     });
 
@@ -177,7 +179,7 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
                     public void accept(Response<WordListJson> response) throws Exception {
                         Log.d(MyApplication.TAG, "getWordList：获取response");
                         if (response.code() == 401) {
-                            // TODO:未登录
+                            // 未登录
                             return;
                         }
                         else if (response.body() == null) {
@@ -209,6 +211,14 @@ public class WordViewModel extends BaseViewModel<DataRepository> {
                         loadMoreLiveEvent.setValue(false);
                     }
                 });
+    }
+
+    public SingleLiveEvent<Boolean> getSearchWordLiveEvent() {
+        return searchWordLiveEvent;
+    }
+
+    public SingleLiveEvent<Boolean> getAddWordLiveEvent() {
+        return addWordLiveEvent;
     }
 
     public DataRepository getDataRepository() {

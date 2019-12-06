@@ -1,38 +1,39 @@
 package online.ahayujie.aha_vocabulary_app.ui.word.add_word;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import me.goldze.mvvmhabit.base.BaseFragment;
 import online.ahayujie.aha_vocabulary_app.BR;
 import online.ahayujie.aha_vocabulary_app.R;
 import online.ahayujie.aha_vocabulary_app.app.MyViewModelFactory;
-import online.ahayujie.aha_vocabulary_app.databinding.FragmentAddWordBinding;
+import online.ahayujie.aha_vocabulary_app.databinding.ActivityAddWordBinding;
+import online.ahayujie.aha_vocabulary_app.ui.BaseAbstractActivity;
 
-public class AddWordFragment extends BaseFragment<FragmentAddWordBinding, AddWordViewModel> {
+/**
+ * 添加新单词Activity
+ *
+ * @author aha
+ */
+public class AddWordActivity extends BaseAbstractActivity<ActivityAddWordBinding, AddWordViewModel> {
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, AddWordActivity.class);
+        context.startActivity(intent);
+    }
 
     /**
      * 初始化根布局
      *
-     * @param inflater
-     * @param container
      * @param savedInstanceState
      * @return 布局layout的id
      */
     @Override
-    public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container,
-                               @Nullable Bundle savedInstanceState) {
-        return R.layout.fragment_add_word;
+    public int initContentView(Bundle savedInstanceState) {
+        return R.layout.activity_add_word;
     }
 
     /**
@@ -47,7 +48,7 @@ public class AddWordFragment extends BaseFragment<FragmentAddWordBinding, AddWor
 
     @Override
     public AddWordViewModel initViewModel() {
-        MyViewModelFactory viewModelFactory = MyViewModelFactory.getInstance(getActivity().getApplication());
+        MyViewModelFactory viewModelFactory = MyViewModelFactory.getInstance(getApplication());
         return ViewModelProviders.of(this, viewModelFactory).get(AddWordViewModel.class);
     }
 
@@ -59,11 +60,11 @@ public class AddWordFragment extends BaseFragment<FragmentAddWordBinding, AddWor
             public void onChanged(Boolean isSave) {
                 if (isSave) {
                     // 保存新单词
-                    AddWordFragment.this.viewModel.saveWord(binding.addWordWordSpellEditText.
+                    AddWordActivity.this.viewModel.saveWord(binding.addWordWordSpellEditText.
                             getText().toString(), binding.addWordWordTranslationEditText.getText()
                     .toString());
                 }
-                AddWordFragment.this.viewModel.finish();
+                AddWordActivity.this.viewModel.finish();
             }
         });
     }

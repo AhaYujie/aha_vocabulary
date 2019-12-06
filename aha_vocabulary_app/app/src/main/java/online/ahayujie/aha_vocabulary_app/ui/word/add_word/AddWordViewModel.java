@@ -68,7 +68,8 @@ public class AddWordViewModel extends BaseViewModel<DataRepository> {
                     @Override
                     public void accept(Response<WordJson> response) throws Exception {
                         if (response.code() == 401) {
-                            // TODO:未登录
+                            // 未登录
+                            return;
                         }
                         if (response.body() == null) {
                             throw new NullPointerException("response body is null");
@@ -77,6 +78,7 @@ public class AddWordViewModel extends BaseViewModel<DataRepository> {
                             throw new IllegalArgumentException("status is 0");
                         }
                         Log.d(MyApplication.TAG, "word: " + response.body().getWord());
+                        ToastUtils.showShort("添加单词成功");
                         Messenger.getDefault().send(response.body().getWord(), TOKEN_WORD_ADD);
                     }
                 }, new Consumer<Throwable>() {

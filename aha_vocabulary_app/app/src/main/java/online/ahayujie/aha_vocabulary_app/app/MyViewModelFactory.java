@@ -15,6 +15,8 @@ import online.ahayujie.aha_vocabulary_app.data.word_data_source.WordDataSource;
 import online.ahayujie.aha_vocabulary_app.data.word_data_source.impl.WordDataSourceImpl;
 import online.ahayujie.aha_vocabulary_app.data.word_data_source.network.api.WordService;
 import online.ahayujie.aha_vocabulary_app.ui.clean.CleanViewModel;
+import online.ahayujie.aha_vocabulary_app.ui.login.LoginViewModel;
+import online.ahayujie.aha_vocabulary_app.ui.main.MainViewModel;
 import online.ahayujie.aha_vocabulary_app.ui.word.WordViewModel;
 import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordViewModel;
 import online.ahayujie.aha_vocabulary_app.ui.word.search_word.SearchWordViewModel;
@@ -63,6 +65,12 @@ public class MyViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         }
         else if (modelClass.isAssignableFrom(CleanViewModel.class)) {
             return (T) new CleanViewModel(application, dataRepository);
+        }
+        else if (modelClass.isAssignableFrom(LoginViewModel.class)) {
+            return (T) new LoginViewModel(application, dataRepository);
+        }
+        else if (modelClass.isAssignableFrom(MainViewModel.class)) {
+            return (T) new MainViewModel(application, dataRepository);
         }
         else {
             throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

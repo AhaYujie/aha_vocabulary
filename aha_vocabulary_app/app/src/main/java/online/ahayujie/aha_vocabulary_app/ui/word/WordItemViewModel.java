@@ -59,7 +59,7 @@ public class WordItemViewModel extends ItemViewModel<WordViewModel> {
     private BindingCommand wordCleanClick = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            // TODO:将单词放入回收站
+            // 将单词放入回收站
             viewModel.getDataRepository().modifyWordClean(wordId, 0)
                     .compose(RxUtils.schedulersTransformer())
                     .compose(RxUtils.exceptionTransformer())
@@ -74,7 +74,8 @@ public class WordItemViewModel extends ItemViewModel<WordViewModel> {
                         @Override
                         public void accept(Response<StatusJson> response) throws Exception {
                             if (response.code() == 401) {
-                                // TODO:未登录
+                                // 未登录
+                                return;
                             }
                             if (response.body() == null) {
                                 throw new NullPointerException("response body is null");
@@ -146,8 +147,8 @@ public class WordItemViewModel extends ItemViewModel<WordViewModel> {
                     @Override
                     public void accept(Response<StatusJson> response) throws Exception {
                         if (response.code() == 401) {
-                            // TODO:未登录
-                            Log.d(MyApplication.TAG, "401未登录");
+                            // 未登录
+                            return;
                         }
                         if (response.body() == null) {
                             throw new NullPointerException("response body 为null");
@@ -155,6 +156,7 @@ public class WordItemViewModel extends ItemViewModel<WordViewModel> {
                         if (response.body().getStatus() == 0) {
                             throw new IllegalArgumentException("status为0");
                         }
+                        wordSearchTimes.set(String.valueOf(Integer.parseInt(wordSearchTimes.get()) + wordSearchTimesModified));
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -166,7 +168,6 @@ public class WordItemViewModel extends ItemViewModel<WordViewModel> {
                     @Override
                     public void run() throws Exception {
                         Log.d(MyApplication.TAG, "修改单词查询次数完成");
-                        wordSearchTimes.set(String.valueOf(Integer.parseInt(wordSearchTimes.get()) + wordSearchTimesModified));
                     }
                 });
     }

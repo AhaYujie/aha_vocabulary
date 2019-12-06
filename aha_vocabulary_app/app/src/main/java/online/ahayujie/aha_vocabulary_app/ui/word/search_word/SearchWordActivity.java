@@ -1,45 +1,41 @@
 package online.ahayujie.aha_vocabulary_app.ui.word.search_word;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import me.goldze.mvvmhabit.base.BaseFragment;
 import online.ahayujie.aha_vocabulary_app.BR;
 import online.ahayujie.aha_vocabulary_app.R;
 import online.ahayujie.aha_vocabulary_app.app.MyViewModelFactory;
-import online.ahayujie.aha_vocabulary_app.databinding.FragmentSearchWordBinding;
+import online.ahayujie.aha_vocabulary_app.databinding.ActivitySearchWordBinding;
+import online.ahayujie.aha_vocabulary_app.ui.BaseAbstractActivity;
 
 
 /**
- * 网络搜索新单词Fragment
+ * 网络搜索新单词Activity
  *
  * @author aha
  */
-public class SearchWordFragment extends BaseFragment<FragmentSearchWordBinding, SearchWordViewModel> {
+public class SearchWordActivity extends BaseAbstractActivity<ActivitySearchWordBinding, SearchWordViewModel> {
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, SearchWordActivity.class);
+        context.startActivity(intent);
+    }
 
     /**
      * 初始化根布局
      *
-     * @param inflater
-     * @param container
      * @param savedInstanceState
      * @return 布局layout的id
      */
     @Override
-    public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container,
-                               @Nullable Bundle savedInstanceState) {
-        return R.layout.fragment_search_word;
+    public int initContentView(Bundle savedInstanceState) {
+        return R.layout.activity_search_word;
     }
 
     /**
@@ -58,9 +54,9 @@ public class SearchWordFragment extends BaseFragment<FragmentSearchWordBinding, 
             @Override
             public boolean onQueryTextSubmit(String query) {
                 binding.searchWordCollectIcon.setClickable(true);
-                binding.searchWordCollectIcon.setImageDrawable(SearchWordFragment.this.getResources()
+                binding.searchWordCollectIcon.setImageDrawable(SearchWordActivity.this.getResources()
                 .getDrawable(R.mipmap.ic_collect_green));
-                SearchWordFragment.this.viewModel.searchWord(query);
+                SearchWordActivity.this.viewModel.searchWord(query);
                 return true;
             }
 
@@ -73,7 +69,7 @@ public class SearchWordFragment extends BaseFragment<FragmentSearchWordBinding, 
 
     @Override
     public SearchWordViewModel initViewModel() {
-        MyViewModelFactory viewModelFactory = MyViewModelFactory.getInstance(getActivity().getApplication());
+        MyViewModelFactory viewModelFactory = MyViewModelFactory.getInstance(getApplication());
         return ViewModelProviders.of(this, viewModelFactory).get(SearchWordViewModel.class);
     }
 
@@ -84,7 +80,7 @@ public class SearchWordFragment extends BaseFragment<FragmentSearchWordBinding, 
             @Override
             public void onChanged(Boolean isCollect) {
                 if (isCollect) {
-                    binding.searchWordCollectIcon.setImageDrawable(SearchWordFragment.this.getResources()
+                    binding.searchWordCollectIcon.setImageDrawable(SearchWordActivity.this.getResources()
                     .getDrawable(R.mipmap.ic_collected_green));
                     binding.searchWordCollectIcon.setClickable(false);
                 }

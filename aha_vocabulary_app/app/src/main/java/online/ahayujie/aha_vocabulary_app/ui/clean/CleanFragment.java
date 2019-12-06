@@ -20,7 +20,7 @@ import online.ahayujie.aha_vocabulary_app.BR;
 import online.ahayujie.aha_vocabulary_app.R;
 import online.ahayujie.aha_vocabulary_app.app.MyViewModelFactory;
 import online.ahayujie.aha_vocabulary_app.databinding.FragmentCleanBinding;
-import online.ahayujie.aha_vocabulary_app.ui.MainActivity;
+import online.ahayujie.aha_vocabulary_app.ui.main.MainActivity;
 
 /**
  * 回收站Fragment
@@ -91,7 +91,7 @@ public class CleanFragment extends BaseFragment<FragmentCleanBinding, CleanViewM
         });
         alertDialog = new AlertDialog.Builder(getContext());
         alertDialog.setTitle("提示");
-        alertDialog.setMessage("你确定要删除订单吗?");
+        alertDialog.setMessage("你确定要删除单词吗?");
         alertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -140,6 +140,7 @@ public class CleanFragment extends BaseFragment<FragmentCleanBinding, CleanViewM
                     }
                 });
                 alertDialog.show();
+
             }
         });
         // 监听打开关闭drawer

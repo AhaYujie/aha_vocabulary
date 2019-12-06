@@ -102,7 +102,8 @@ public class CleanViewModel extends BaseViewModel<DataRepository> {
                     @Override
                     public void accept(Response<WordListJson> response) throws Exception {
                         if (response.code() == 401) {
-                            // TODO:未登录
+                            // 未登录
+                            return;
                         }
                         if (response.body() == null) {
                             throw new NullPointerException("response body is null");
@@ -150,7 +151,8 @@ public class CleanViewModel extends BaseViewModel<DataRepository> {
                     @Override
                     public void accept(Response<StatusJson> response) throws Exception {
                         if (response.code() == 401) {
-                            // TODO:未登录
+                            // 未登录
+                            return;
                         }
                         if (response.body() == null) {
                             throw new NullPointerException("response body is null");
@@ -163,7 +165,7 @@ public class CleanViewModel extends BaseViewModel<DataRepository> {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d(MyApplication.TAG, "捕获异常: " + throwable.getMessage());
+                        Log.d(MyApplication.TAG, "加载回收站捕获异常: " + throwable.getMessage());
                     }
                 }, new Action() {
                     @Override

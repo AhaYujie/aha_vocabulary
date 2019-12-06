@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import online.ahayujie.aha_vocabulary_app.data.bean.LoginJson;
 import online.ahayujie.aha_vocabulary_app.data.bean.StatusJson;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Header;
@@ -31,7 +32,7 @@ public interface UserService {
      * @return
      */
     @DELETE("token/logout")
-    Observable logout(@Header("token") String token);
+    Observable<Response<Void>> logout(@Header("token") String token);
 
 
     /**

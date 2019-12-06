@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="loginViewModel"
+            type="online.ahayujie.aha_vocabulary_app.ui.login.LoginViewModel" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            android:text="注册"
+            android:clickable="true"
+            android:focusable="true"
+            binding:onClickCommand="@{loginViewModel.clickRegister}"/>
+
+        <TextView
+            android:id="@+id/login_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:text="登录"/>
+
+        <EditText
+            android:id="@+id/login_username_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/login_title_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/round_edit_text"
+            style="?android:attr/borderlessButtonStyle"
+            android:inputType="text"
+            android:maxLines="1"
+            android:maxLength="15"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="请输入用户名"/>
+
+        <EditText
+            android:id="@+id/login_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/login_username_edit_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/round_edit_text"
+            style="?android:attr/borderlessButtonStyle"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="请输入密码"/>
+
+        <RelativeLayout
+            android:id="@+id/login_way_confirm_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_password_edit_text"
+            android:clickable="true"
+            android:focusable="true"
+            binding:onClickCommand="@{loginViewModel.clickLogin}">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_circle_green"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_right_arrow_white"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

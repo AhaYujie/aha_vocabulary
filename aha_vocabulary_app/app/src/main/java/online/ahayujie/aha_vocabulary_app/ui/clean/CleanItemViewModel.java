@@ -48,7 +48,8 @@ public class CleanItemViewModel extends ItemViewModel<CleanViewModel> {
                         @Override
                         public void accept(Response<StatusJson> response) throws Exception {
                             if (response.code() == 401) {
-                                // TODO:未登录
+                                // 未登录
+                                return;
                             }
                             if (response.body() == null) {
                                 throw new NullPointerException("response body is null");

@@ -63,6 +63,42 @@ public class DataRepository extends BaseModel implements UserDataSource, WordDat
     }
 
     /**
+     * 删除token
+     */
+    @Override
+    public void deleteToken() {
+        userDataSource.deleteToken();
+    }
+
+    /**
+     * 保存用户名
+     *
+     * @param userName
+     */
+    @Override
+    public void saveUserName(String userName) {
+        userDataSource.saveUserName(userName);
+    }
+
+    /**
+     * 获取用户名
+     *
+     * @return
+     */
+    @Override
+    public String getUserName() {
+        return userDataSource.getUserName();
+    }
+
+    /**
+     * 删除用户名
+     */
+    @Override
+    public void deleteUserName() {
+        userDataSource.deleteUserName();
+    }
+
+    /**
      * 用户登录
      *
      * @param userName
@@ -78,7 +114,7 @@ public class DataRepository extends BaseModel implements UserDataSource, WordDat
      * 用户退出登录
      */
     @Override
-    public Observable logout() {
+    public Observable<Response<Void>> logout() {
         return userDataSource.logout();
     }
 

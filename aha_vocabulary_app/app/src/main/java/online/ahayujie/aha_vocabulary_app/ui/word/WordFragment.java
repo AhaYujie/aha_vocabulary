@@ -20,7 +20,9 @@ import online.ahayujie.aha_vocabulary_app.R;
 import online.ahayujie.aha_vocabulary_app.app.MyApplication;
 import online.ahayujie.aha_vocabulary_app.app.MyViewModelFactory;
 import online.ahayujie.aha_vocabulary_app.databinding.FragmentWordBinding;
-import online.ahayujie.aha_vocabulary_app.ui.MainActivity;
+import online.ahayujie.aha_vocabulary_app.ui.main.MainActivity;
+import online.ahayujie.aha_vocabulary_app.ui.word.add_word.AddWordActivity;
+import online.ahayujie.aha_vocabulary_app.ui.word.search_word.SearchWordActivity;
 
 /**
  * 单词本Fragment
@@ -160,6 +162,24 @@ public class WordFragment extends BaseFragment<FragmentWordBinding, WordViewMode
                 }
                 else {
                     binding.wordRefreshLayout.finishLoadmore();
+                }
+            }
+        });
+        // 监听点击添加单词
+        viewModel.getAddWordLiveEvent().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isClick) {
+                if (isClick) {
+                    AddWordActivity.actionStart(WordFragment.this.getContext());
+                }
+            }
+        });
+        // 监听点击搜索单词
+        viewModel.getSearchWordLiveEvent().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isClick) {
+                if (isClick) {
+                    SearchWordActivity.actionStart(WordFragment.this.getContext());
                 }
             }
         });
