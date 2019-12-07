@@ -36,13 +36,16 @@ public class LoginViewModel extends BaseViewModel<DataRepository> {
     private BindingCommand clickRegister = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            // TODO:注册
+            // 注册
+            registerLiveEvent.setValue(true);
         }
     });
 
     private SingleLiveEvent<Boolean> loginLiveEvent = new SingleLiveEvent<>();
 
     private SingleLiveEvent<Boolean> loginStatusLiveEvent = new SingleLiveEvent<>();
+
+    private SingleLiveEvent<Boolean> registerLiveEvent = new SingleLiveEvent<>();
 
     public LoginViewModel(@NonNull Application application, DataRepository model) {
         super(application, model);
@@ -88,6 +91,10 @@ public class LoginViewModel extends BaseViewModel<DataRepository> {
                         loginStatusLiveEvent.setValue(true);
                     }
                 });
+    }
+
+    public SingleLiveEvent<Boolean> getRegisterLiveEvent() {
+        return registerLiveEvent;
     }
 
     public SingleLiveEvent<Boolean> getLoginStatusLiveEvent() {

@@ -1,4 +1,4 @@
-package online.ahayujie.aha_vocabulary_app.util;
+package online.ahayujie.aha_vocabulary_app.utils;
 
 import android.content.Context;
 

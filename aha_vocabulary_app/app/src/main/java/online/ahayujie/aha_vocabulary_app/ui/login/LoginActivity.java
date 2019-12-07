@@ -13,6 +13,7 @@ import online.ahayujie.aha_vocabulary_app.app.MyViewModelFactory;
 import online.ahayujie.aha_vocabulary_app.databinding.ActivityLoginBinding;
 import online.ahayujie.aha_vocabulary_app.ui.BaseAbstractActivity;
 import online.ahayujie.aha_vocabulary_app.ui.main.MainActivity;
+import online.ahayujie.aha_vocabulary_app.ui.register.RegisterActivity;
 
 /**
  * 登录Activity
@@ -68,6 +69,15 @@ public class LoginActivity extends BaseAbstractActivity<ActivityLoginBinding, Lo
                     MainActivity.actionStart(LoginActivity.this);
                     LoginActivity.this.finish();
                     LoginActivity.this.viewModel.finish();
+                }
+            }
+        });
+        // 监听注册点击事件
+        viewModel.getRegisterLiveEvent().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isClick) {
+                if (isClick) {
+                    RegisterActivity.actionStart(LoginActivity.this);
                 }
             }
         });

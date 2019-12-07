@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="loginViewModel"
-            type="online.ahayujie.aha_vocabulary_app.ui.login.LoginViewModel" />
+            name="registerViewModel"
+            type="online.ahayujie.aha_vocabulary_app.ui.register.RegisterViewModel" />
     </data>
 
     <RelativeLayout
@@ -13,24 +13,21 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.login.LoginActivity">
+        tools:context=".ui.register.RegisterActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:textColor="@color/gray"
-            android:textSize="18sp"
-            android:text="注册"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:src="@mipmap/ic_back_black"
             android:clickable="true"
             android:focusable="true"
-            binding:onClickCommand="@{loginViewModel.clickRegister}"/>
+            binding:onClickCommand="@{registerViewModel.backClick}"/>
 
         <TextView
-            android:id="@+id/login_title_text"
+            android:id="@+id/register_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -38,13 +35,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="35sp"
             android:textStyle="bold"
-            android:text="登录"/>
+            android:text="注册"/>
 
         <EditText
-            android:id="@+id/login_username_edit_text"
+            android:id="@+id/register_username_edit_text"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_below="@+id/login_title_text"
+            android:layout_below="@+id/register_title_text"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
@@ -59,10 +56,10 @@
             android:hint="请输入用户名"/>
 
         <EditText
-            android:id="@+id/login_password_edit_text"
+            android:id="@+id/register_password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_below="@+id/login_username_edit_text"
+            android:layout_below="@+id/register_username_edit_text"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
@@ -76,15 +73,33 @@
             android:textSize="20sp"
             android:hint="请输入密码"/>
 
+        <EditText
+            android:id="@+id/register_password_edit_text_second"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/register_password_edit_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/round_edit_text"
+            style="?android:attr/borderlessButtonStyle"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="请再次输入密码"/>
+
         <RelativeLayout
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/login_password_edit_text"
+            android:layout_below="@+id/register_password_edit_text_second"
             android:clickable="true"
             android:focusable="true"
-            binding:onClickCommand="@{loginViewModel.clickLogin}">
+            binding:onClickCommand="@{registerViewModel.registerClick}">
 
             <ImageView
                 android:layout_width="match_parent"

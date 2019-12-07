@@ -1,4 +1,4 @@
-package online.ahayujie.aha_vocabulary_app.util;
+package online.ahayujie.aha_vocabulary_app.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,6 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.Properties;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManager;
@@ -20,8 +19,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-
-import online.ahayujie.aha_vocabulary_app.app.MyApplication;
 
 
 public class HttpsUtils {
